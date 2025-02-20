@@ -9,12 +9,17 @@ from dense_neural_class import *
 import requests
 import io
 import base64
+import configparser
 
-# Function to load the model with absolute path
+def get_url():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    return f"{config['server']['url']}{config['server']['port_exposed']}/predict"
 
 # Load the model when starting the program
 model = load_model('model')
-url = "http://127.0.0.1:8000/predict"
+url = get_url()
+
 def predict(image):
     # Uses the loaded model to make a prediction
     buf = io.BytesIO()

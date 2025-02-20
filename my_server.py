@@ -8,6 +8,12 @@ from dense_neural_class import *
 import base64
 from PIL import Image
 import io
+import configparser
+
+def get_port():
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    return config['server']['port_exposed']
 
 def load_model(filename):
     # Gets the current directory where the script is being executed
@@ -39,4 +45,4 @@ async def predict(data:Data):
 
 # Run from command line: uvicorn apiWithBody:app --port 7000 --host 0.0.0.0
 # or invoke the code below.
-uvicorn.run(app)
+uvicorn.run(app,port = 7000)#,host = '0.0.0.0',port =int(get_port()))
