@@ -1,4 +1,4 @@
-Methodology
+# Methodology
 - A new script my_server.py loads the model and initiates the server.
 - The script contains a post method 'predict' which takes in data as base64 encoded string, decodes it and predicts the digit according to the model
 - The prediction is returned to the client as a JSON object with key 'Digit'
